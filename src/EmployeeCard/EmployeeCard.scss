@@ -5,7 +5,8 @@
 }
 
 .employee-card {
-    width: 120px;
+    width: 140px;
+    height: 190px;
     border: 2px solid darken($color-cards, 35%);
     padding: 8px;
     margin-bottom: 10px;
@@ -19,7 +20,7 @@
     &__counter {
         border: 2px solid darken($color-cards, 35%);
         display: grid;
-        height: 10vh;
+        height: 80px;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr;
         place-items: center;

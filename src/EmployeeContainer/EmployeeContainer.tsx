@@ -12,7 +12,7 @@ type EmployeeArray = {
 }
 
 const EmployeeContainer = ({team}: EmployeeArray) => {
-    const [searchTermJob, setSearchTermJob] = useState<string>("")
+    const [dropdownJobs, setdropdownJobs] = useState<string>("")
     const [searchTermName, setSearchTermName] = useState<string>("")
 
     const handleInputName =(event: FormEvent<HTMLInputElement>) => {
@@ -21,26 +21,28 @@ const EmployeeContainer = ({team}: EmployeeArray) => {
     }
 
     const handleInputJob =(event: FormEvent<HTMLSelectElement>) => {
-        const cleanedInput = event.currentTarget.value.toLowerCase()
-        setSearchTermJob(cleanedInput)
-        
+        const cleanedInput = event.currentTarget.value
+        setdropdownJobs(cleanedInput)
+        console.log(dropdownJobs)
     }
 
 
     const findSearchTerm = () => {
-        if (searchTermJob === "" && searchTermName ==="") {
+        if (dropdownJobs === "" && searchTermName ==="") {
         return team
-    }   else if(searchTermJob !="" && searchTermName ==="") {
+    }   else if(dropdownJobs !="" && searchTermName ==="") {
         return team.filter((employee) => {
-            return employee.role.toLowerCase().includes(searchTermJob)   
+            return employee.role.includes(dropdownJobs)   
         }) 
-    }   else if (searchTermJob === "" && searchTermName !="") {
+    }   else if (dropdownJobs === "" && searchTermName !="") {
         return team.filter((employee) => {
             return employee.name.toLowerCase().includes(searchTermName)   
         })
+    } else if(dropdownJobs === "") {
+        return team
     } else {
         return team.filter((employee) => {
-            return employee.name.toLowerCase().includes(searchTermName) && employee.role.toLowerCase().includes(searchTermJob) 
+            return employee.name.toLowerCase().includes(searchTermName) && employee.role.includes(dropdownJobs) 
         }) 
     }
 }  
@@ -50,10 +52,10 @@ const EmployeeContainer = ({team}: EmployeeArray) => {
             <label>Search by Name</label>
             <SearchBox label="Search by name" searchTerm={searchTermName} handleInput={handleInputName} />
             <label>Search by Job</label>
-            <DropdownBox/>
+            <DropdownBox label="Search by Job" handleInput={handleInputJob}/>
         </div>
         <div className="team-grid">
-            {findSearchTerm().map((individual) => <EmployeeCard name={individual.name} role={individual.role}/> )}
+            {findSearchTerm().map((individual) => <EmployeeCard key={individual.name} name={individual.name} role={individual.role}/> )}
             
         </div>
         </>
