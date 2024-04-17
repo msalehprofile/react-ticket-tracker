@@ -4,6 +4,7 @@ import EmployeeCard from '../EmployeeCard/EmployeeCard'
 import SearchBox from '../SearchBox/SearchBox'
 import { useState, FormEvent } from 'react'
 import './EmployeeContainer.scss'
+import DropdownBox from '../DropdownBox/DropdownBox'
 
 
 type EmployeeArray = {
@@ -17,44 +18,42 @@ const EmployeeContainer = ({team}: EmployeeArray) => {
     const handleInputName =(event: FormEvent<HTMLInputElement>) => {
         const cleanedInput = event.currentTarget.value.toLowerCase()
         setSearchTermName(cleanedInput)
-        console.log(searchTermName)
     }
 
-    const filterByName = team.filter((employee) => {
-        return employee.name.toLowerCase().includes(searchTermName)   
-    })
-    console.log(filterByName)
-
-    const handleInputJob =(event: FormEvent<HTMLInputElement>) => {
+    const handleInputJob =(event: FormEvent<HTMLSelectElement>) => {
         const cleanedInput = event.currentTarget.value.toLowerCase()
         setSearchTermJob(cleanedInput)
-        console.log(searchTermJob)
+        
     }
 
-    const filterByJob = team.filter((employee) => {
-        return employee.role.toLowerCase().includes(searchTermJob)   
-    })
-    console.log(filterByJob)
 
-//     let list = team;
-//     const findSearchTerm = () => {
-//         if (searchTermJob === "" && searchTermName ==="") {
-//         return list = team
-//     }   else if(searchTermJob !="" && searchTermName ==="") {
-//         return list = filterByJob
-//     }   else if (searchTermName!="") {
-//         return list = filterByName
-//     }
-// }  
-
+    const findSearchTerm = () => {
+        if (searchTermJob === "" && searchTermName ==="") {
+        return team
+    }   else if(searchTermJob !="" && searchTermName ==="") {
+        return team.filter((employee) => {
+            return employee.role.toLowerCase().includes(searchTermJob)   
+        }) 
+    }   else if (searchTermJob === "" && searchTermName !="") {
+        return team.filter((employee) => {
+            return employee.name.toLowerCase().includes(searchTermName)   
+        })
+    } else {
+        return team.filter((employee) => {
+            return employee.name.toLowerCase().includes(searchTermName) && employee.role.toLowerCase().includes(searchTermJob) 
+        }) 
+    }
+}  
     return (
         <>
         <div className="seachBoxes">
+            <label>Search by Name</label>
             <SearchBox label="Search by name" searchTerm={searchTermName} handleInput={handleInputName} />
-            <SearchBox label="Search by job" searchTerm={searchTermJob} handleInput={handleInputJob} />
+            <label>Search by Job</label>
+            <DropdownBox/>
         </div>
         <div className="team-grid">
-            { team.map((individual) => <EmployeeCard name={individual.name} role={individual.role}/> ) && filterByJob.map((individual) => <EmployeeCard name={individual.name} role={individual.role}/> )}
+            {findSearchTerm().map((individual) => <EmployeeCard name={individual.name} role={individual.role}/> )}
             
         </div>
         </>
