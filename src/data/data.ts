@@ -1,6 +1,12 @@
-import { Card } from "../EmployeeCard/EmployeeCard";
 
-const team: Card[] = [
+
+export type Card = {
+    id: number;
+    name: string;
+    role: string;
+}
+
+export const team: Card[] = [
     {
         id: 1,
         name: "Alima Miller",

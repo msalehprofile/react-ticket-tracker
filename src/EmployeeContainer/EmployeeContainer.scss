@@ -1,0 +1,26 @@
+
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .team-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1400px) {
+    .team-grid {
+      grid-template-columns: repeat(5, 1fr);
+      margin-top: 30px;
+    }
+  }
