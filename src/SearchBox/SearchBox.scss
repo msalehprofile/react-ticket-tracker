@@ -1,0 +1,9 @@
+@use '../variables.scss' as *;
+
+.searchbox {
+    width: 190px;
+    border: 2px solid darken($color-cards, 35%);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+}

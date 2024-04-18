@@ -1,5 +1,6 @@
 
 import team from '../data/data'
+import './DropdownBox.scss'
 import { FormEventHandler } from 'react'
 
 type DropdownProps = {
@@ -15,8 +16,8 @@ console.log(uniqueRoles)
 const DropdownBox = ({handleInput}: DropdownProps) => {
   return (
     <div >
-        <select name="selection" id="dropdown-option" onChange={handleInput}>
-            <option key="dropdown-option__empty"></option>
+        <select className="dropdown" name="selection" id="dropdown-option" onChange={handleInput}>
+            <option key="dropdown-option__empty">Job</option>
             {fullArr.map((roles) => <option key={roles}>{roles}</option>)}
         </select>
         
