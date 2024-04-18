@@ -8,6 +8,7 @@
     width: 140px;
     height: 190px;
     border: 2px solid darken($color-cards, 35%);
+    border-radius: 8px;
     padding: 8px;
     margin-bottom: 10px;
     background-color: $color-cards;
@@ -15,10 +16,12 @@
     &__info {
         font-size: 12px;
         margin: 10px 5px;
+        background-color: $color-cards;
     }
 
     &__counter {
         border: 2px solid darken($color-cards, 35%);
+        border-radius: 8px;
         display: grid;
         height: 80px;
         grid-template-columns: 1fr 1fr 1fr;
@@ -32,6 +35,11 @@
         .counter__title {
             grid-column: 1/4;
             font-weight: 500;
+            background-color: lighten($color-background, 5%);
+        }
+
+        .counter__value {
+            background-color: lighten($color-background, 5%);
         }
 
         .counter__button {

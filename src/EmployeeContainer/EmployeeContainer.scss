@@ -6,9 +6,23 @@
   place-items: center;
 }
 
+.seachBoxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 @media screen and (min-width: 750px) {
   .team-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .seachBoxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
   }
 }
 
@@ -22,5 +36,16 @@
     .team-grid {
       grid-template-columns: repeat(5, 1fr);
       margin-top: 30px;
+    }
+
+    .seachBoxes {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      margin: 20px;
+
+      &__name {
+        margin-right: 20px;
+      }
     }
   }

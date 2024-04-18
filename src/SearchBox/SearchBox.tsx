@@ -11,12 +11,13 @@ const SearchBox = ({label, searchTerm, handleInput}: SearchBoxProps) => {
 
 
     return (
-    <div>
+    <div >
         <input type="text"
         id={label}
         name={label}
         value={searchTerm}
-        onInput={handleInput} />
+        onInput={handleInput} 
+        className='searchbox'/>
     </div>
 )
 }
